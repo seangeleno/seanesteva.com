@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sean Esteva Dot Com - Donut</title>
+    <link href="./donut.css"></link>
+
+</head>
+<body>
+
+<div class='container'>
+    <canvas></canvas>
+    <svg class='donut' version='1.1' viewbox='0 0 241 241' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+        <defs>
+            <path d='M119,233 C184.1696,233 237,180.841173 237,116.5 C237,52.1588266 184.1696,0 119,0 C53.8303995,0 1,52.1588266 1,116.5 C1,180.841173 53.8303995,233 119,233 Z M118.5,156 C139.762963,156 157,138.762963 157,117.5 C157,96.2370371 139.762963,79 118.5,79 C97.2370371,79 80,96.2370371 80,117.5 C80,138.762963 97.2370371,156 118.5,156 Z' id='path-1'></path>
+            <filter filterunits='objectBoundingBox' height='200%' id='filter-2' width='200%' x='-50%' y='-50%'>
+                <fegaussianblur in='SourceAlpha' result='shadowBlurInner1' stddeviation='1.5'></fegaussianblur>
+                <feoffset dx='0' dy='1' in='shadowBlurInner1' result='shadowOffsetInner1'></feoffset>
+                <fecomposite in2='SourceAlpha' in='shadowOffsetInner1' k2='-1' k3='1' operator='arithmetic' result='shadowInnerInner1'></fecomposite>
+                <fecolormatrix in='shadowInnerInner1' type='matrix' values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0'></fecolormatrix>
+            </filter>
+        </defs>
+        <ellipse cx='113' cy='120' fill='none' rx='113' ry='113' stroke-width='7' stroke='#DD9275'></ellipse>
+        <g fill='none' stroke='none'>
+            <use fill-rule='evenodd' fill='#ECB49D' xlink:href='#path-1'></use>
+            <use fill-opacity='1' fill='#000' filter='url(#filter-2)' xlink:href='#path-1'></use>
+        </g>
+        <path d='M124,221 C137.277929,221 141.773891,204.292002 155,201 C168.226109,197.707998 186.751859,195.655546 197,185 C216.528404,164.695261 203.267236,161.172659 208,154 C212.714644,146.854802 214.420767,146.677165 217,143 C219.579233,139.322835 226,128.064466 226,116 C226,103.855437 211.5808,92.2181949 208,79 C204.4192,65.7818051 202.279809,56.8039376 197,50 C189.960422,40.9282984 177.187471,37.0730428 160,32 C142.812529,26.9269572 137.271803,13 124,13 C108.043377,13 93.5061332,24.1249127 78,32 C62.4938668,39.8750873 51.5448035,40.2045308 43,50 C34.6654099,59.5544877 34.1844313,68.4095357 29,79 C23.8155687,89.5904643 12,108.543282 12,122 C12,133.465306 27.5048434,146.090291 29,159 C30.4951566,171.909709 28.9885735,182.848642 38,192 C54.8279874,209.089296 67.1353622,194.870672 78,201 C88.2274016,206.769828 94.0033806,213.070053 99,216 C103.996619,218.929947 113.281965,221 124,221 Z M118.5,157 C139.762963,157 157,139.762963 157,118.5 C157,97.2370371 139.762963,80 118.5,80 C97.2370371,80 80,97.2370371 80,118.5 C80,139.762963 97.2370371,157 118.5,157 Z' fill-rule='evenodd' fill='#EE468A' stroke='none'></path>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(66.232150, 73.524770) rotate(-38.000000) translate(-66.232150, -73.524770) ' width='8' x='62.23215' y='62.0247696'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(49.751012, 130.792456) rotate(-86.000000) translate(-49.751012, -130.792456) ' width='8' x='45.7510125' y='119.292456'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(78.744553, 156.771989) rotate(-70.000000) translate(-78.744553, -156.771989) ' width='8' x='74.744553' y='145.271989'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(137.485341, 189.113013) rotate(34.000000) translate(-137.485341, -189.113013) ' width='8' x='133.485341' y='177.613013'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(194.959292, 121.004095) rotate(-60.000000) translate(-194.959292, -121.004095) ' width='8' x='190.959292' y='109.504095'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#F8E81C' height='23' rx='4' stroke='none' transform='translate(169.236859, 92.520704) rotate(-34.000000) translate(-169.236859, -92.520704) ' width='8' x='165.236859' y='81.0207037'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='26' rx='4.5' stroke='none' transform='translate(49.268695, 91.802460) rotate(38.000000) translate(-49.268695, -91.802460) ' width='9' x='44.7686945' y='78.8024601'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='21' rx='4' stroke='none' transform='translate(66.174696, 176.148730) rotate(-23.000000) translate(-66.174696, -176.148730) ' width='8' x='62.1746957' y='165.64873'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='23' rx='4' stroke='none' transform='translate(109.930713, 175.031784) rotate(28.000000) translate(-109.930713, -175.031784) ' width='8' x='105.930713' y='163.531784'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='26' rx='4.5' stroke='none' transform='translate(167.552748, 175.460846) rotate(-31.000000) translate(-167.552748, -175.460846) ' width='9' x='163.052748' y='162.460846'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='23' rx='4' stroke='none' transform='translate(172.173218, 144.357922) rotate(72.000000) translate(-172.173218, -144.357922) ' width='8' x='168.173218' y='132.857922'></rect>
+        <rect class='sprinkle' fill-rule='evenodd' fill='#23BFC4' height='23' rx='4' stroke='none' width='8' x='185.049648' y='66.0146164'></rect>
+        <g class='eye' fill-rule='evenodd' fill='none' stroke-width='1' stroke='none' transform='translate(76.000000, 36.000000)'>
+            <ellipse class='eyeBase' cx='20.5' cy='21.5' fill='#FFFFFF' rx='20.5' ry='20.5'></ellipse>
+            <ellipse class='eyeLayer' cx='19.5' cy='21.5' fill='#7BB0E3' rx='12.5' ry='12.5'></ellipse>
+            <circle class='eyeLayer' cx='19.5' cy='21.5' fill='#000000' r='6.5'></circle>
+            <path class='eyeBase' d='M40.1678355,30 C36.6772011,37.094842 29.1876814,42 20.5116279,42 C11.8355749,42 4.34605553,37.0948425 0.855420943,30.0000012 L40.1678355,30 Z M41.0232558,14 C38.0375519,5.84365339 29.9813655,0 20.5116279,0 C11.0418903,0 2.98570396,5.84365339 3.30846461e-14,14 L41.0232558,14 Z' fill='#BE155A'></path>
+        </g>
+        <g class='eye' fill-rule='evenodd' fill='none' stroke-width='1' stroke='none' transform='translate(121.000000, 36.000000)'>
+            <ellipse class='eyeBase' cx='20.5' cy='21.5' fill='#FFFFFF' rx='20.5' ry='20.5'></ellipse>
+            <ellipse class='eyeLayer' cx='19.5' cy='21.5' fill='#7BB0E3' rx='12.5' ry='12.5'></ellipse>
+            <circle class='eyeLayer' cx='19.5' cy='21.5' fill='#000000' r='6.5'></circle>
+            <path class='eyeBase' d='M40.1678355,30 C36.6772011,37.094842 29.1876814,42 20.5116279,42 C11.8355749,42 4.34605553,37.0948425 0.855420943,30.0000012 L40.1678355,30 Z M41.0232558,14 C38.0375519,5.84365339 29.9813655,0 20.5116279,0 C11.0418903,0 2.98570396,5.84365339 3.30846461e-14,14 L41.0232558,14 Z' fill='#BE155A'></path>
+        </g>
+    </svg>
+</div>
+<script src="./donut.js"
+</body>
+</html>
