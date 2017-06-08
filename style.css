@@ -22,6 +22,7 @@ a { color: inherit; text-decoration: none; }
 h1 { font-size: 3rem; }
 @media screen and (max-width: 500px) { h1 { font-size: 2rem; } }
 
+
 h2 { font-size: 1.7rem; }
 @media screen and (max-width: 500px) { h2 { font-size: 1.2rem; } }
 
@@ -84,6 +85,16 @@ body { display: flex; flex-direction: column; }
         -webkit-filter: hue-rotate(360deg);
         filter: hue-rotate(360deg);
     }
+}
+
+#nicole_msg {
+    width: 1200PX;
+    height: 50px;
+    font-size: smaller;
+    text-align: center;
+    position: relative;
+    bottom: 35px;
+    left: 60px;
 }
 .footer { text-align: center; background: #07a; color: #fafafa; width: 100%;
     background-image: -webkit-linear-gradient(45deg, #fa0 40%, #0c9 60%);

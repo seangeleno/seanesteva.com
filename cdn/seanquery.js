@@ -78,7 +78,7 @@ function nodeName(elem, name) {
 /* JS + CSS LIBRARIES START */
 
 function bootstrapify(){
-	var hyperlinkreference = "http://seanesteva.com/cdn/css/bootstrap-3.3.7.css";
+	var hyperlinkreference = "https://seanesteva.com/cdn/css/bootstrap-3.3.7.css";
 	var dochead = document.querySelector('head');
 	var bootScript = newEl('link');
 	bootScript.setAttribute("href", hyperlinkreference);
