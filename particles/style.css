@@ -1,0 +1,267 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Quantico);
+html, body {
+    background: #111;
+}
+
+#container {
+    background: #111;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+#stats {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+/* Info */
+
+@keyframes show-info {
+    0% {
+        transform: rotateY(120deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.info {
+    transition: all 180ms ease-out;
+    transform-style: preserve-3d;
+    transform: perspective(800px);
+    font-family: "Quantico", sans-serif;
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.8;
+    color: #fff;
+    width: 220px;
+    left: 0px;
+    top: 20px;
+}
+
+.info:hover {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+    opacity: 1;
+}
+
+.info h1, .info h2, .info h3 {
+    line-height: 1;
+    margin: 5px 0;
+}
+
+.info a {
+    transition: all 200ms ease-out;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    opacity: 0.6;
+    color: #fff;
+}
+
+.info a:hover {
+    opacity: 0.99;
+}
+
+.info .about, .info .more {
+    transform-origin: 0% 50%;
+    transform: rotateY(120deg);
+    margin-bottom: 1px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px 15px 12px 20px;
+}
+
+.info .about {
+    animation: show-info 500ms cubic-bezier(0.23, 1, 0.32, 1) 600ms 1 normal forwards;
+    padding-bottom: 15px;
+}
+
+.info .about a {
+    opacity: 0.9;
+}
+
+.info .about h1 {
+    letter-spacing: -1px;
+    font-weight: 300;
+    font-size: 19px;
+    opacity: 0.95;
+}
+
+.info .about h2 {
+    font-weight: 300;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.info .about h3 {
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+.info .about h3:before {
+    margin-right: 2px;
+    font-size: 14px;
+    content: "›";
+}
+
+.info .more {
+    animation: show-info 500ms cubic-bezier(0.23, 1, 0.32, 1) 500ms 1 normal forwards;
+    padding: 5px 15px 10px 20px;
+}
+
+.info .more a {
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-size: 10px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic);
+h1, button {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+p {
+    color: #fff;
+    text-align: center;
+    padding-top: 500px;
+    font-size: 10px;
+}
+
+#nicole_msg {
+    color: #fff;
+    padding-top: 5%;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    color: #2ecc71;
+}
+
+.main {
+    width: 100%;
+}
+
+.sub-main {
+    width: 30%;
+    margin: 22px;
+    float: left;
+}
+
+.button-one, .button-two, .button-three {
+    text-align: center;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 0 0 100px;
+}
+
+
+/*Button One*/
+
+.button-one {
+    padding: 20px 60px;
+    outline: none;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 9px #95a5a6;
+}
+
+.button-one:hover {
+    background-color: #2ecc71;
+}
+
+.button-one:active {
+    background-color: #2ecc71;
+    box-shadow: 0 5px #95a5a6;
+    transform: translateY(4px);
+}
+
+
+/*Button Two*/
+
+.button-two {
+    border-radius: 4px;
+    background-color: #d35400;
+    border: none;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+}
+
+.button-two span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button-two span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button-two:hover span {
+    padding-right: 25px;
+}
+
+.button-two:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+/*Button Three*/
+
+.button-three {
+    position: relative;
+    background-color: #f39c12;
+    border: none;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.button-three:hover {
+    background: #fff;
+    box-shadow: 0px 2px 10px 5px #97B1BF;
+    color: #000;
+}
+
+.button-three:after {
+    content: "";
+    background: #f1c40f;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button-three:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
