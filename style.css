@@ -139,14 +139,20 @@ body { display: flex; flex-direction: column; }
 .post__content figure.highlight { width: 114%; margin: 1.6rem 0 1.6rem -7%; }
 @media screen and (max-width: 800px) { .post__content figure.highlight { width: 100%; margin: 1.6rem auto; } }
 .post__content em { font-style: italic; }
-.post__content img, .post__content .image, .post__content .cp_embed_wrapper { display: block; margin: 1.6rem auto; width: 114%; margin-left: -7%; }
+.post__content img, .post__content .image, .post__content .cp_embed_wrapper { display: block;
+    width: 114%;
+    margin: 1.6rem auto 1.6rem -7%;
+}
 @media screen and (max-width: 800px) { .post__content img, .post__content .image, .post__content .cp_embed_wrapper { width: 100%; margin: 1.6rem auto; } }
 .post__content img--small, .post__content .image--small, .post__content .cp_embed_wrapper--small { margin: 20px auto; width: 70%; }
 .post__content img + em, .post__content .image + em, .post__content .cp_embed_wrapper + em { font-style: none; margin: -10px 0 20px; color: #b3b3b3; font-size: 0.9rem; text-align: center; display: block; }
 .post__content blockquote { margin: 2em 0px; padding: 1em 2em; border-left: 5px solid #d2d0d0; font-style: italic; }
 .post__content blockquote p { margin: 0; }
 .post__content blockquote p > em { display: block; margin-top: 1.5em; text-align: right; font-size: 0.9em; font-style: normal; color: #b3b3b3; }
-.post__video { display: block; margin: 1.6rem auto; width: 114%; margin-left: -7%; position: relative; padding-top: 64.13%; height: 0; overflow: hidden; }
+.post__video { display: block;
+    width: 114%;
+    margin: 1.6rem auto 1.6rem -7%;
+    position: relative; padding-top: 64.13%; height: 0; overflow: hidden; }
 @media screen and (max-width: 800px) { .post__video { width: 100%; margin: 1.6rem auto; } }
 .post__video > iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .post__continue { font-weight: normal; display: flex; justify-content: flex-end; color: #b3b3b3; line-height: 1.4; }
