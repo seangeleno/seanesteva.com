@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-<script type="text/javascript" src="../analytics.js"></script>
 <script type="text/javascript" src="./seanquery.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -19,19 +18,28 @@
    console.log(container);
    var jumbotron = newEl("div", "jumbotron");
    console.log(container);
-   var myButton = newEl("div", "btn btn-lg btn-success");
-   console.log(myButton);
+   var jquerybutton = newEl("div", "btn btn-lg btn-success");
+
+   var bs = newEl("div", "btn btn-lg btn-primary");
+   console.log(jquerybutton);
+   console.log(bs);
 
 
-   myButton.innerText = "jQuery 3.3.1";
-  // myButton.setAttribute("src", "./js/jquery-3.2.1.js");
-   myButton.addEventListener("click", function(){
+   jquerybutton.innerText = "jQuery 3.2.1";
+   bs.innerText = "Bootstrap 3.3.7";
+  // jquerybutton.setAttribute("src", "./js/jquery-3.2.1.js");
+   jquerybutton.addEventListener("click", function(){
 	window.location = "./js/jquery-3.2.1.js";
+});
+   bs.addEventListener("click", function(){
+	window.location = "./css/bootstrap-3.3.7.css";
 })
 
-setTimeout(function(){   document.body.appendChild(container);
+setTimeout(function(){
+   document.body.appendChild(container);
    container.appendChild(jumbotron);
-   jumbotron.appendChild(myButton);
-}, 200);
+   jumbotron.appendChild(jquerybutton);
+   jumbotron.appendChild(bs);
+},300);
 </script>
 </head>
