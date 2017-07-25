@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]>
+<html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Developing Microservices - Node, React, and Docker - Sean Esteva</title>
+    <meta name="author" content="Sean Esteva">
+
+
+    <meta name="description"
+          content="This tutorial details how to quickly spin up a reproducible development environment with Docker to manage a number of Node.js microservices.">
+    <meta name="keywords" content="docker, microservice, microservices, node, react, reactjs, javascript">
+
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="canonical" href="http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker">
+    <link href="/favicon.png" rel="icon">
+    <link href="../assets/css/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/atom.xml" rel="alternate" title="Sean Esteva" type="application/atom+xml">
+    <script src="assets/js/modernizer.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+    <script src="assets/js/octopress.js" type="text/javascript"></script>
+    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+    <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--- MathJax Configuration -->
+    <script type="text/javascript"
+            src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-72678204-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</head>
+
+<body class="collapse-sidebar sidebar-footer">
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">Sean Esteva</a></h1>
+
+        <h2>Software Developer</h2>
+
+    </hgroup>
+
+</header>
+<nav role="navigation">
+    <ul class="subscribe" data-subscription="rss">
+        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25"
+                 height="25" viewbox="0 0 100 100">
+                <path class="social"
+                      d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path>
+            </svg>
+        </a></li>
+
+    </ul>
+
+
+    <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="sitesearch" value="mherman.org"/>
+
+            <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        <li><a href="/">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/talks">Talks</a></li>
+    </ul>
+
+</nav>
+<br>
+<br>
+<div id="main">
+    <p style="text-align:center;"><span style="text-decoration:underline;"><b> Vineman 2014 Race Report</b></span></p>
+    <p style="text-align:center;"> </p>
+    <p>Getting to the Santa Rosa area was quite a task, it involved many hours of driving solo across California. I
+        picked out a camp ground on <a href="http://hipcamp.com"><b>hipcamp.com</b></a> called Bullfrog Pond Campground
+        as it was very close to the start of the race, approximately 5 miles. </p>
+    <p>I must say, it was one of the nicest campground I have ever been to, located deep in the redwood forest, the
+        views were unbeatable.  </p>
+    <p>The drive up was so long and I ended up leaving so late from LA that I decided it would be prudent to stop at a
+        conveniently located RV-park called Santa Nella RV Park. Luckily, I had the Thule Roof Rack box and placed all
+        my camping gear inside, except for my air mattress, sleeping-bag and pillows. There was wifi, outlets and the
+        bathrooms were very nice, with heated air, clean toilets/showers and even a padlock. </p>
+    <p><img class="alignnone size-medium wp-image-25 aligncenter"
+            src="http://seangeleno.files.wordpress.com/2014/08/santa-nella-rv-park_02.jpg?w=300" alt="Sierra Exif JPEG"
+            width="300" height="225"/>  </p>
+    <p>After I woke up in the morning, I headed on out to the open highway, once again. Eventually, after driving for
+        many hours, I decide to stop and get some provisions. As I was doing this, I stumbled upon YogaWorks Larkspur by
+        total coincidence. I figured it was just a good of a time as any other to take a yoga class. I looked for the
+        hardest one available, as I wanted to sweat and get my workout on. It was a YogaWorks Flow 2/3, however, it
+        ended up feeling more like a 1/2 as the teacher went pretty slow and explained the poses quite a bit, as opposed
+        to your typical vinyassa class at YogaWorks Montana Ave where you get drenched right away. </p>
+    <p>After the yoga class, I headed out on the highway once more. I arrived by around 2 PM and set up camp. The road
+        to the actual campsite was very windy, narrow and ascended very quickly, leaving you off at the top of a
+        mountain. There were hiking trails all around. People were slowly trickling in. </p>
+    <p>For some reason, I thought that the packet pick-up could be done on Friday so I drove the 40 miles total to and
+        from Windsor High School, only to find out that they were still setting up for tomorrow, when the actual packet
+        pick-up would occur. This was a bit disappointing, however, it was cool to see all the action unfolding for the
+        next day. </p>
+    <p>After a good nights sleep at the campground, I arose, ate breakfast, and headed out to packet pick-up. There was
+        a mandatory meeting attended by all athletes before being able to actually pick-up the race packet. I learned
+        that the race sold-out in approximately 3 minutes this year. That meant that all the people in attendance were
+        pretty hard-core triathletes, planning over 6-months in advance, having $350 to put down before all the
+        available slots were taken. </p>
+    <p style="text-align:center;"><b><img class="alignnone  wp-image-24 aligncenter"
+                                          src="http://seangeleno.files.wordpress.com/2014/08/img_0233.jpg?w=300"
+                                          alt="IMG_0233" width="447" height="338"/></b></p>
+    <p style="text-align:center;"><b>Pre-Race</b></p>
+    <p>The format of the race started rather differently that most as 29 and under age groupers would go last, instead
+        of first. This meant that there was about 2 hours from the beginning of the swim to the start of my wave. I must
+        say it was quite a different experience, it allowed me to gain a new perspective, watching all the athletes head
+        out on to the course. It also meant that, if fast enough, we would pass a huge field of athletes. </p>
+    <p>It was rather nippy in the morning, although the water was clearly warmer than the air as it was very steamy. I
+        kept walking around, trying to stay warm and take pictures of all the action. I was able to watch the pros run
+        by as the exited the water, something I have never had the privilege of doing before. It was very inspiring to
+        see them, hopefully one day, with enough hard work, I too will reach the pro rank. </p>
+    <p style="text-align:center;"><b>Swim – 00:36:09</b></p>
+    <p>I had a really good swim. Before I started, I told myself that I should not start really hard and crazy like I
+        have in the past, this causes me to lose my breath/rhythm very quickly, forcing me to stop, losing time.
+        Instead, I told myself to think of it as a normal Wednesday morning session with Tower 26. This was a very
+        beneficial state-of-mind to put myself in, remaining calm during these types of things is one of the ways to go
+        fastest.</p>
+    <p>It was a very interesting swim, most of the course was anywhere from 3-7 feet deep, which meant that any time you
+        got tired, all you had to do was stand up, catch your breath and keep on truckin’ (or swimming).  It felt like
+        the exact opposite of swimming in the ocean, totally safe at all times, in control and, especially, no great
+        white sharks! This was especially relevant since there had been an unfortunate, freak accident, shark-attack the
+        week before off the Manhattan Beach Pier.  </p>
+    <p>It was a deep water start, so all the 29 and under, green capped athletes, myself included, walked into the water
+        and waited for the gun to go off. I felt pretty calm and relaxed at this point, ready for the long day that lay
+        ahead.</p>
+    <p style="text-align:center;"><b>T1 00:05:24</b></p>
+    <p>T1 was muddy and rather chaotic. Since my wave started last, a whole 2 hours from the start of the race, we were
+        able to see T1 being deconstructed as we ran towards our bikes. We had to put all our belongings into the
+        provided plastic bags so that they could be transported back to T2 at Windsor High School, 15 miles away. I took
+        my time to make sure I had placed everything in its right place, which lead to my slower transition time.
+        However, since this was such a long race, relatively speaking, I decided that the extra time spent in T2 would
+        be well worth it. Hopefully, in the future I will be faster.</p>
+    <p style="text-align:center;"><b>Bike – 3:31:36</b></p>
+    <p>In order to make sure there weren’t any surprises, I had driven the bike course the day before. This allowed me
+        to have a much better perspective on what was to come, gauging my energy efforts accordingly.</p>
+    <p>The beginning of the bike starts out with a rather steep hill, which I walked, calmly. After this, I hoped on my
+        bike and tried to maintain the easiest cadence/energy output I could muster. I intended to try and conserve
+        energy, leaving as much as possible for the last 6 miles of the run, at which point I wanted to try and put it
+        all down on the line. This idea worked fantastically. I originally predicted that there would be a lot of
+        suffering coming in on the ride, especially at around mile 39. However, this did not happen, in fact, I felt
+        very good at that point, it was hard to believe.</p>
+    <p>My outstanding performance can be partly attributed to my correct intake of nutrition. During my previous 70.3, a
+        few weeks prior, in Folsom, I had bungled my nutrition in spectacular fashion. I had relied too heavily on plain
+        water, didn’t use Perpeteum and even dropped a water bottle at one point, rendering my parched for quite a few
+        miles, a fatal flaw in triathlon. This meant that by the time I arrived at the last 10 miles of the bike, my
+        legs were shutting down, cramping and I just kept digging myself deeper and deeper into a hole of pure
+        misery.</p>
+    <p style="text-align:center;"><b>Nutrition</b></p>
+    <p>3 Roctane Salt Caps w/ Ginger Root (soothes stomach, supposedly) right after the swim</p>
+    <p>Electrolyte fluids throughout</p>
+    <p>Small amounts of water every 10 minutes</p>
+    <p>3 bite-sized Bonk Breakers</p>
+    <p>5 oz of Perpeteum, 1 squeeze/swig every 30 minutes</p>
+    <p>2 Salt Stick Caps every 20-30 minutes</p>
+    <p>With this particular combination, I was able to continue like the Energizer bunny, it was incredible, especially
+        since I do not really go for such a long time during my training rides, not to mention use all the nutrition
+        that I consumed. I only felt my lower back hurt during the ride, stretching probably would’ve helped with
+        this.</p>
+    <p> At no point did I feel even a slight cramp, my legs were in great condition, I do not think I have ever felt
+        this good after riding for that long. I kept thinking to myself that I was excited and looking forward to the
+        run, something that is very unusual for me. I knew that I had to have the right mentality, otherwise I would be
+        toast.</p>
+    <p>The bike course was spectacular, the entire ride consisted of smooth rolling hills, with very few pot holes, many
+        sections of just recently paved highway, two small climbs, surrounded by mile after mile of vineyards and mostly
+        covered by the shade of trees along the road. I felt like was moving pretty quickly, it seemed as if every time
+        I glanced at my Garmin, it said I was riding at around 20mph.</p>
+    <p>As I was approaching the end of the bike course, I gained a race buddy. I didn’t get a chance to catch his name,
+        he seemed like a pretty cool guy. I saw this dude start to cramp up on the last 2 miles of the bike, all I could
+        think to myself was what a tough time he was going to have if he was already cramping up then. He cheered me on
+        as I passed him. We ended up running out of transition at about the same time.<img
+                class="alignnone size-medium wp-image-30 aligncenter"
+                src="http://seangeleno.files.wordpress.com/2014/08/img_0217.jpg?w=224" alt="IMG_0217" width="224"
+                height="300"/></p>
+    <p style="text-align:center;"> </p>
+    <p style="text-align:center;"><b>T2 – xx:xx:xx</b></p>
+    <p>As I was arriving to T2 I unbuckled my shoes, perfectly, placing my foot on top of the cycling shoe, this allowed
+        me to hop-off with ease and made for an overall faster transition.</p>
+    <p>I frantically started looking for my running gear, it wasn’t were I remembered putting it. I started to panic,
+        neverhtless, there it was, I found it. I racked my bike up and proceeded to sit down, giving me a better
+        position to change. I switched my thin, black cycling socks for my new compression socks. <b>As I was doing
+            this, I had to take off my timing chip, a critical mistake</b>. As I did that, I thought to myself “man, I
+        should be careful or I’m going to forget my chip,” however, I was so concentrated with the race that this
+        thought didn’t even matter, I bolted out of T2 ready for action, sadly, <b>leaving my timing chip behind</b>.
+        The crazy thing is: I didn’t even realize until half-way through the run, when the timing mats weren’t making
+        those funky robot noises as I ran over them, leading me to stop in my tracks, cursing at the realization of what
+        I had just done.</p>
+    <p style="text-align:center;"><b>Run – xx:xx:xx</b></p>
+    <p>This was by far my best performance at the half-ironman distance. I was so ready to run, all my training boiled
+        down to this moment. I thought to myself that it was not that hard as I had just run/walked all the way from my
+        house to the Venice pier (16 miles). I felt like I was flying, the mile markers/aid stations were just coming
+        one after the other. During my previous races, I have tended to feel pretty demoralized at the start of the run,
+        like a giant mountain that I have to climb. That makes for a painful run. Not this time, I think my compression
+        socks really helped me, my calves were feeling extraordinary, no pain, no cramping, just pure glory. At this
+        point, I passed my race buddy, again he cheered me on.</p>
+    <p>Since this was such a new experience for me, it felt rather odd, it was quite hard to know how much longer this
+        type of thing could go on for. Would I simply crash within a few miles? Or would I be able to endeavor, pushing
+        hard the whole way? Only time could tell at that point.</p>
+    <p>Before I knew it, I reached the “La Crema” winery, I could see it standing tall in the distance, amongst the
+        vineyards. This was an interesting loop, it felt rather disconcerting, however, because I didn’t realize just
+        how long that loop was, my Garmin read 8 miles, but we just kept running and running, I thought we surely had to
+        turn around soon. Sure enough, the turnaround came and it was at this point I noticed something funny about the
+        timing mats. Why weren’t they making that freaky noise when I was running over them? I stopped for a second,
+        looked down, and let out a giant groan of angst/expletives <b>as I realized my T2 thoughts were correct, I left
+            my timing chip on the grass.</b></p>
+    <p>As can be imagined, this was a terrible blow to my psyche, instead of simply focusing on racing hard, a stream of
+        thoughts flooded my head, creating doubt, uncertainty and despair. After a few seconds, I gained my composure,
+        and simply said, “F#$k it!” and continued running. Even though I had somewhat convinced myself that they would
+        fix-it somehow, either via photos or writing down who was at the finish line, however, in the end I was wrong, I
+        simply didn’t get a time and pretty much got DQ’d. It always amazes me the things that you learn and have to
+        plan for races like this, especially since they are so few and far in between. You have to travel to the race,
+        participate and then contemplate on all the things that could’ve been improved. I must say, this was almost as
+        bad as the time I missed the 4<sup>th</sup> lap of the bike at Pacific Groove’s Olympic distance race in
+        September 2013. On the bright side, I’ll be extra careful and make sure this type of thing doesn’t happen
+        again. </p>
+    <p>I pushed as hard as I could without over-doing it, and, admittedly, had to do a bit of a mini-walk after running
+        for a while, never more than 10 seconds before running as hard as I could.</p>
+    <p>In hindsight, altering my running speed so much, from around 8:30 to 7:30 to  walking @ 15:00 min/mi for a few
+        seconds, really caused me to fatigue unnecessarily. In the future I will try to maintain a more modest, stable
+        run pace in order to maximize my energy. At least now I know that I can actually make it this far without even
+        the slightest cramp, something that had proved impossible for me before. Travelling</p>
+    <p style="text-align:center;"><b><img class="alignnone size-medium wp-image-29"
+                                          src="http://seangeleno.files.wordpress.com/2014/08/img_0223.jpg?w=300"
+                                          alt="IMG_0223" width="300" height="224"/></b></p>
+    <p style="text-align:center;"><b>Post-Race</b></p>
+    <p>I was so happy to have finished, nevertheless, terribly demoralized from having left my chip. I was in such good
+        shape by the end that I could’ve easily kept going. This is good news for my very first upcoming Ironman at Lake
+        Tahoe in September. </p>
+    <p>Right after, I walked around thinking of what the best thing to do about my timing chip was. At this point, I
+        realized that eating the food the organizers of Vineman provided would probably be the best thing to do. As I
+        ate, I felt the life coming back to me.</p>
+    <p>I learned a great amount from this race and it was one of my best performances so far. I can’t wait to do the
+        race again next year. Hopefully I will have the opportunity to sign-up on time as the race sells-out SOO quickly
+        every year.</p>
+
+</div>
+
+</div>
+</div>
+<footer role="contentinfo">
+    <div>
+        <span>Copyright &copy; 2017 - Sean Esteva</span><br>
+        <a href="https://github.com/mjhea0"><i class="fa fa-github-square" style="font-size:2em" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/mikeherman"><i class="fa fa-twitter-square" style="font-size:2em"
+                                                    aria-hidden="true"></i></a>
+        <a href="http://www.linkedin.com/pub/michael-herman/3b/a94/4"><i class="fa fa-linkedin-square"
+                                                                         style="font-size:2em"
+                                                                         aria-hidden="true"></i></a>
+        <a href="http://www.youtube.com/hermanmu"><i class="fa fa-youtube-square" style="font-size:2em"
+                                                     aria-hidden="true"></i></a>
+    </div>
+
+</footer>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'michaelherman';
+
+
+    // var disqus_developer = 1;
+    var disqus_identifier = 'http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker/';
+    var disqus_url = 'http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker/';
+    var disqus_script = 'embed.js';
+
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script type="text/javascript">
+    (function () {
+        var twitterWidgets = document.createElement('script');
+        twitterWidgets.type = 'text/javascript';
+        twitterWidgets.async = true;
+        twitterWidgets.src = '//platform.twitter.com/widgets.js';
+        document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+</script>
+
+
+</body>
+</html>

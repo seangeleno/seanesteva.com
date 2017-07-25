@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]>
+<html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Developing Microservices - Node, React, and Docker - Sean Esteva</title>
+    <meta name="author" content="Sean Esteva">
+
+
+    <meta name="description"
+          content="This tutorial details how to quickly spin up a reproducible development environment with Docker to manage a number of Node.js microservices.">
+    <meta name="keywords" content="docker, microservice, microservices, node, react, reactjs, javascript">
+
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="canonical" href="http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker">
+    <link href="/favicon.png" rel="icon">
+    <link href="../assets/css/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/atom.xml" rel="alternate" title="Sean Esteva" type="application/atom+xml">
+    <script src="assets/js/modernizer.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+    <script src="assets/js/octopress.js" type="text/javascript"></script>
+    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+    <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--- MathJax Configuration -->
+    <script type="text/javascript"
+            src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-72678204-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</head>
+
+<body class="collapse-sidebar sidebar-footer">
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">Sean Esteva</a></h1>
+
+        <h2>Software Developer</h2>
+
+    </hgroup>
+
+</header>
+<nav role="navigation">
+    <ul class="subscribe" data-subscription="rss">
+        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25"
+                 height="25" viewbox="0 0 100 100">
+                <path class="social"
+                      d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path>
+            </svg>
+        </a></li>
+
+    </ul>
+
+
+    <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="sitesearch" value="mherman.org"/>
+
+            <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        <li><a href="/">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/talks">Talks</a></li>
+    </ul>
+
+</nav>
+<br>
+<br>
+<div id="main">
+    <p style="text-align:center;"><span
+            style="text-decoration:underline;"><strong>Alcatraz Challenge Race Report</strong></span></p>
+    <p><strong>Race Date: 05/18/2014</strong></p>
+    <p><strong>Pre-Race</strong></p>
+    <p>I had to drive 400 mi to San Francisco, leaving on Saturday morning, spending one night at a 1 star motel and
+        then driving back to be at my 6AM shift on Monday morning. It was quite a journey, especially since I was
+        totally alone.</p>
+    <p>Staying in San Francisco, in the Tenderloin district was very disturbing, there were addicts and hustlers
+        everywhere you looked. I managed to find a parking lot structure that had 24 hour parking for $20.  The only
+        problem was that they closed from 2AM to 6AM and I had to be at the ferry at 5AM. This meant that I had to try
+        and sleep from about 9PM on Saturday until around 130AM Sunday, gather my things and leave my roach motel, get
+        to my car and then try to find a place to park closer to the ferry. Also, I had to wait from 2AM until 5AM, or
+        about 3 hours in a city that I was not acquainted with at all. Luckily, I found a nice, secluded spot in the
+        Presidio to park and try to get some shut-eye.</p>
+    <p><strong>Ferry Ride</strong></p>
+    <p>The ferry ride was quite exciting, being able to travel around the bay with a bunch of like-minded athletes that
+        were all about to jump out into the freezing cold water with me. It took quite a while to finally get out to
+        Alcatraz, however, I waited patiently until it was time to jump in the water.</p>
+    <p>We were given brief instructions on what to sight on while traversing the bay. Firstly, we had to sight on Fort
+        Mason, then the Yacht Club and finally the green copper dome of the Palace of Fine Arts. They only gave us a
+        5-minute window to jump off the ferry, so It all happened very quickly. Before you knew it, we were all out.</p>
+    <p><strong>Swim – 00:45:33 – Pace: 00:01:53 / mile</strong></p>
+    <p> As soon as I hit the water it was a pure adrenaline surge, the waves were huge, toppling over my head, leaving
+        me gasping for air. Everyone started swimming away, seemingly undisturbed by the difficult swimming
+        conditions.</p>
+    <p>At first it was hard for me to get a good rhythm going, as soon as I would try and gasp for air a wave would
+        collapse on my head and make me stop. This happened several times, until, finally, I started to develop a tactic
+        for breathing. I would have to time my breathing so that I would come out of the water at the crest of the
+        second wave, meaning that I would have to stay underwater for 2 more seconds than usual.</p>
+    <p>All of the sighting objects seemed so far away, this coupled with how hard it was for me to even get a good
+        stroke cadence made it seem like I would be out there for a very long time. Nevertheless, I kept pushing, hard,
+        eventually realizing that I was making good progress. Although I noticed that I had deviated off course a bit,
+        my fellow athletes were already on shore, running towards the end of the swim.</p>
+    <p><strong>Transition – 00:02:54</strong></p>
+    <p>I ran on the sand until I reached the pavement of T1. Tried to be as fast as possible, get my running shoes on,
+        my glasses and get out of dodge as soon as possible.</p>
+    <p><strong>Run – 01:02:47 – Pace: 00:08:58</strong></p>
+    <p>I felt strong during the run, I originally thought it was only 6 miles, so, I may have pushed a little too hard
+        considering it was actually 7 miles. The run started out on a gravel trail, then lead to a set of stairs  all
+        the way to the Golden Gate Bridge. It was one of the most breath-taking vistas I had every had the opportunity
+        to traverse. I first glance, one might not notice the curvature of the bridge, however, it definitely becomes
+        noticeable as you try and run as fast as possible across it.</p>
+
+</div>
+
+</div>
+</div>
+<footer role="contentinfo">
+    <div>
+        <span>Copyright &copy; 2017 - Sean Esteva</span><br>
+        <a href="https://github.com/mjhea0"><i class="fa fa-github-square" style="font-size:2em" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/mikeherman"><i class="fa fa-twitter-square" style="font-size:2em"
+                                                    aria-hidden="true"></i></a>
+        <a href="http://www.linkedin.com/pub/michael-herman/3b/a94/4"><i class="fa fa-linkedin-square"
+                                                                         style="font-size:2em"
+                                                                         aria-hidden="true"></i></a>
+        <a href="http://www.youtube.com/hermanmu"><i class="fa fa-youtube-square" style="font-size:2em"
+                                                     aria-hidden="true"></i></a>
+    </div>
+
+</footer>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'michaelherman';
+
+
+    // var disqus_developer = 1;
+    var disqus_identifier = 'http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker/';
+    var disqus_url = 'http://mherman.org/blog/2017/05/11/developing-microservices-node-react-docker/';
+    var disqus_script = 'embed.js';
+
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script type="text/javascript">
+    (function () {
+        var twitterWidgets = document.createElement('script');
+        twitterWidgets.type = 'text/javascript';
+        twitterWidgets.async = true;
+        twitterWidgets.src = '//platform.twitter.com/widgets.js';
+        document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+</script>
+
+
+</body>
+</html>

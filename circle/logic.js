@@ -3,7 +3,7 @@ var c = document.getElementById('c'),
 	ctx = c.getContext('2d');
 
 // Duration in ms
-var dur = 30000;
+var dur = 3000;
 // Parts duration in [0,1] (e.g. .65 = 65% of the animation in the square to circle transition, and 35% in the circle to square transition)
 var split = .65;
 // Radius in px (also half the square side length)

@@ -1,0 +1,72 @@
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    font-family: helvetica;
+    text-transform: uppercase;
+    background-image: -webkit-linear-gradient(285deg, rgba(194, 233, 221, 0.5) 3%, rgba(104, 119, 132, 0.5) 100%);
+    background-image: linear-gradient(165deg, rgba(194, 233, 221, 0.5) 3%, rgba(104, 119, 132, 0.5) 100%);
+}
+
+.countdown {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 75%;
+    max-width: 20rem;
+    margin: 0 auto;
+}
+
+.countdown__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    min-width: 31%;
+    margin-bottom: 15px;
+}
+
+.countdown__item--large {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    width: 100%;
+    font-size: 2.75em;
+}
+
+.countdown__timer {
+    padding: .25em;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.countdown__label {
+    font-size: 1em;
+    padding-top: .40em;
+}
+.countdown__item--large .countdown__label:before, .countdown__item--large .countdown__label:after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.4), transparent);
+    background-image: linear-gradient(left, transparent, rgba(0, 0, 0, 0.4), transparent);
+}
