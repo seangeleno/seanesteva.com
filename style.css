@@ -46,7 +46,7 @@ body { display: flex; flex-direction: column; }
 
 .hero { color: #646C77; }
 .hero__paragraph { font-size: 1.2rem; margin-bottom: 0.4em; }
-@media screen and (max-width: 500px) { .hero__paragraph { font-size: 1.1rem; } }
+@media screen and (max-width: 500px) { .hero__paragraph #nicole_msg { font-size: 1.1rem; } }
 .hero__name { color: #333; }
 .hero__hi { margin-bottom: 0.5em; }
 .hero__intro { line-height: 1.4; margin-bottom: 1em; }
@@ -88,13 +88,14 @@ body { display: flex; flex-direction: column; }
 }
 
 #nicole_msg {
-    width: 1200PX;
+    width: 45%;
     height: 50px;
     font-size: smaller;
     text-align: center;
     position: relative;
     bottom: 35px;
-    left: 60px;
+    left: 30%;
+    padding-bottom: 12%;
 }
 .footer { text-align: center; background: #07a; color: #fafafa; width: 100%;
     background-image: -webkit-linear-gradient(45deg, #fa0 40%, #0c9 60%);
@@ -108,7 +109,7 @@ body { display: flex; flex-direction: column; }
 .footer__paragraph { margin: 0; font-size: 0.8rem; color: #fafafa; }
 .footer__social-list { justify-content: center; display: flex; align-items: center; margin-bottom: 15px; }
 .footer__social-link { color: #fafafa; margin: 0 1.3em; font-size: 1.3rem; transition: color 0.3s ease-in-out; }
-@media screen and (max-width: 500px) { .footer__social-link { margin: 0 0.8em; font-size: 1.5rem; } }
+@media screen and (max-width: 500px) { #nicole_msg .footer__social-link { margin: 0 0.8em; font-size: 1.5rem; } }
 .footer__social-link:hover { color: #b3b3b3; }
 
 .share-buttons { margin: 3rem 0; display: flex; justify-content: flex-end; padding: 1.5rem 0; color: #e2e2e2; border-bottom: 1px solid currentColor; font-size: 1.4rem; }
@@ -119,7 +120,7 @@ body { display: flex; flex-direction: column; }
 .posts { margin-bottom: 130px; }
 
 .post { margin: 5rem 0 0; }
-@media screen and (max-width: 500px) { .post { margin: 2rem 0 0; } }
+@media screen and (max-width: 500px) { .post #nicole_mesage { margin: 2rem 0 0; } }
 .post__title { position: relative; margin-bottom: 24px; font-family: "PT Sans", sans-serif; font-size: 1.6rem; }
 .post__title a { background: #fff; padding-right: 1em; font-weight: normal; }
 .post__title:after { content: ""; width: 100%; height: 4px; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: -1; }
@@ -143,7 +144,7 @@ body { display: flex; flex-direction: column; }
     width: 114%;
     margin: 1.6rem auto 1.6rem -7%;
 }
-@media screen and (max-width: 800px) { .post__content img, .post__content .image, .post__content .cp_embed_wrapper { width: 100%; margin: 1.6rem auto; } }
+@media screen and (max-width: 800px) { #nicole_msg .post__content img, .post__content .image, .post__content .cp_embed_wrapper { width: 100%; margin: 1.6rem auto; } }
 .post__content img--small, .post__content .image--small, .post__content .cp_embed_wrapper--small { margin: 20px auto; width: 70%; }
 .post__content img + em, .post__content .image + em, .post__content .cp_embed_wrapper + em { font-style: none; margin: -10px 0 20px; color: #b3b3b3; font-size: 0.9rem; text-align: center; display: block; }
 .post__content blockquote { margin: 2em 0px; padding: 1em 2em; border-left: 5px solid #d2d0d0; font-style: italic; }
